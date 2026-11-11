@@ -1,7 +1,7 @@
 import re
 
 HEADING_RE = re.compile(
-    r"^#{2,4}\s+(GET|POST|PUT|PATCH|DELETE)\s+(/\S*)\s*$",
+    r"^#{2,4}\s+`?\s*(GET|POST|PUT|PATCH|DELETE)\s+(/\S*?)\s*`?\s*$",
     re.MULTILINE,
 )
 
@@ -61,6 +61,10 @@ def _parse_params(body: str, path: str) -> list[dict]:
         name = name.strip().strip("`")
         raw_type = raw_type.strip().strip("`")
         required = required.strip().lower()
+
+        # NEW: Skip invalid Python identifiers (like numbers '400', '401')
+        if name.isdigit() or not name.isidentifier():
+            continue
 
         # Skip header row and separator row
         if name.startswith("-") or (name.lower() in ("name", "parameter", "param") and raw_type.lower() in ("type", "kind")):
