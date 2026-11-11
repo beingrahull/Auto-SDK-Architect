@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.015em;
+    background-color: #F8F9FA;
+    color: #0F172A;
+  }
+}
+
+/* Ink trap display styling: high-contrast, deep cuts */
+.ink-trap-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+}
+
+/* Precision technical font styling */
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-feature-settings: "calt" 1, "zero" 1;
+}
+
+/* Custom pulse indicator */
+@keyframes signal-ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-signal {
+  animation: signal-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
