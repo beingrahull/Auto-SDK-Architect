@@ -62,4 +62,3 @@ async def login(payload: LoginUser, response: Response):
     }
 
 
-@router.post("")

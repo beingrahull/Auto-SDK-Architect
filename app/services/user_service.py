@@ -1,10 +1,11 @@
 from app.models.user import User
+print("Service User id:", id(User))
 from app.utils.security import compare_password
 
 
 
 async def find_by_email(emailid:str):
-    return await User.find_one(User.email==emailid)
+    return await User.find_one({"email": emailid})
 
 async def authentication(email:str,password:str):
     check_user=await find_by_email(email)
